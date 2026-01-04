@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Reva</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Georgia', serif;
+}
+
+body {
+    background: linear-gradient(135deg, #5b0f1c, #7a1f2b);
+    color: white;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+h1 {
+    font-size: 2.3em;
+    margin-bottom: 30px;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.7;
+    max-width: 600px;
+    margin-top: 20px;
+    z-index: 5;
+}
+
+button {
+    padding: 12px 30px;
+    border-radius: 30px;
+    border: none;
+    background: white;
+    color: #7a1f2b;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.floating-photo {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 3px solid rgba(255,255,255,0.7);
+    box-shadow: 0 0 20px rgba(255,182,193,0.6);
+    animation: float 8s ease-in-out infinite;
+}
+
+.floating-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo1 { top: 15%; left: 10%; animation-delay: 0s; }
+.photo2 { top: 25%; right: 10%; animation-delay: 2s; }
+.photo3 { bottom: 20%; left: 30%; animation-delay: 4s; }
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-25px); }
+    100% { transform: translateY(0); }
+}
+
+.heart {
+    position: absolute;
+    color: pink;
+    font-size: 20px;
+    animation: heartFloat 3s ease forwards;
+    pointer-events: none;
+}
+
+@keyframes heartFloat {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(-150px) scale(1.5); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page" id="page1">
+    <h1>Happy Birthday<br>Reva Cantik 🎂</h1>
+    <button onclick="nextPage()">Continue ❤️</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page hidden" id="page2">
+
+    <div class="floating-photo photo1">
+        <img src="foto1.jpg">
+    </div>
+
+    <div class="floating-photo photo2">
+        <img src="foto2.jpg">
+    </div>
+
+    <div class="floating-photo photo3">
+        <img src="foto3.jpg">
+    </div>
+
+    <p>
+        Selamat ulang tahun, sayang.  
+        Terima kasih udah hadir dan jadi bagian terindah di hidup aku,  
+        semoga apa yang kamu mau bisa cepet terwujud sayang ❤  
+        <br><br>
+        I'll always love you, <b>Reva</b>.
+    </p>
+
+</div>
+
+<script>
+function nextPage() {
+    document.getElementById("page1").classList.add("hidden");
+    document.getElementById("page2").classList.remove("hidden");
+}
+
+document.addEventListener("click", function(e) {
+    for (let i = 0; i < 6; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤";
+        heart.style.left = e.clientX + "px";
+        heart.style.top = e.clientY + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 3000);
+    }
+});
+</script>
+
+</body>
+</html>
